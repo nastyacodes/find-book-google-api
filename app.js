@@ -2,12 +2,14 @@ const btnSearch = document.querySelector('#btn-search');
 const divResults = document.querySelector('#search-results');
 const inputSearch = document.querySelector('#input-search');
 
-btnSearch.addEventListener('click', () => {
-    fetchAPI();
-    
+btnSearch.addEventListener('click', fetchAPI);
+inputSearch.addEventListener('keyup', function(e) {
+    if(e.keyCode === 13) {
+        fetchAPI();
+    }
 });
 
-async function fetchAPI() {
+function fetchAPI() {
     const searchPhrase = inputSearch.value ? inputSearch.value : 'javascript';
     const apiKey = 'AIzaSyCLhvQyJ4Zx-TqXHw_EEp4MD1sX6fo5WxQ';
 
@@ -20,11 +22,11 @@ async function fetchAPI() {
         books.forEach(book => {
             const bookInfo = book.volumeInfo;
 
-            const image = bookInfo.imageLinks ? bookInfo.imageLinks.thumbnail : '/';
+            const image = bookInfo.imageLinks ? bookInfo.imageLinks.smallThumbnail : '/';
             const title = bookInfo.title;
             const subtitle = bookInfo.subtitle ? bookInfo.subtitle : '';
             const description = bookInfo.description ? cutDescription(bookInfo.description) : 'Description not found...';
-            const link = bookInfo.infoLink;
+            const link = book.saleInfo.buyLink;
 
             resultHtml += showBook(image, title, subtitle, description, link);
         });
