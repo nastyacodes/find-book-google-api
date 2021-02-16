@@ -26,7 +26,7 @@ function fetchAPI() {
             const title = bookInfo.title;
             const subtitle = bookInfo.subtitle ? bookInfo.subtitle : '';
             const description = bookInfo.description ? cutDescription(bookInfo.description) : 'Description not found...';
-            const link = book.saleInfo.buyLink;
+            const link = bookInfo.infoLink;
 
             resultHtml += showBook(image, title, subtitle, description, link);
         });
@@ -44,7 +44,7 @@ function showBook(image, title, subtitle, description, link) {
                 <h5 class="card-title">${title}</h5>
                 <h6 class="card-title">${subtitle}</h6>
                 <p class="card-text">${description}</p>
-                <a href="${link}" class="btn btn-primary">Download</a>
+                <a href="${link}" class="btn btn-primary">More info...</a>
             </div>
         </div>`;
 }
