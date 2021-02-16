@@ -24,7 +24,7 @@ async function fetchAPI() {
             const title = bookInfo.title;
             const subtitle = bookInfo.subtitle ? bookInfo.subtitle : '';
             const description = bookInfo.description ? cutDescription(bookInfo.description) : 'Description not found...';
-            const link = bookInfo.selfLink;
+            const link = bookInfo.infoLink;
 
             resultHtml += showBook(image, title, subtitle, description, link);
         });
